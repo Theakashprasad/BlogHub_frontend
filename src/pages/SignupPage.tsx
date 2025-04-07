@@ -60,7 +60,8 @@ const SignupPage = () => {
   return (
     <div
       className="flex min-h-screen bg-cover bg-center font-sans"
-      style={{ backgroundImage: "url('/uploads/blog-signup.png')" }}
+      style={{ backgroundImage: "url('https://pomodo.s3.eu-north-1.amazonaws.com/blog-signup.png')" }}
+
     >
       <div className="absolute inset-0 bg-black opacity-50"></div>
 

@@ -77,8 +77,8 @@ const LoginPage = () => {
   return (
     <div
       className="relative flex justify-center items-center min-h-screen bg-cover bg-center font-sans"
-      style={{ backgroundImage: "url('/uploads/blog.png')" }}
-    >
+      style={{ backgroundImage: "url('https://pomodo.s3.eu-north-1.amazonaws.com/blog.png')" }}
+      >
       <div className="absolute inset-0 bg-black opacity-50"></div>
       <div className="relative z-10 w-full max-w-md p-8 rounded-lg backdrop-blur-md bg-white bg-opacity-20">
         <h1 className="text-3xl font-bold text-white text-center mb-6">

@@ -47,7 +47,7 @@ const BlogPage: React.FC = () => {
     <div
       className="flex flex-col h-screen bg-gray-100 font-sans"
       style={{
-        backgroundImage: "url('/uploads/blogback.png')",
+        backgroundImage: "url('https://pomodo.s3.eu-north-1.amazonaws.com/blogback.png')" ,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -74,7 +74,7 @@ const BlogPage: React.FC = () => {
           <div className="w-1/4 pr-8 flex flex-col">
             <div className="bg-white p-4 rounded-lg shadow mb-4 items-center text-center">
               <img
-                src={currentUser?.image || "/uploads/defaultprofile.jpg"}
+                src={currentUser?.image || "https://pomodo.s3.eu-north-1.amazonaws.com/defaultprofile.jpg"}
                 alt="User avatar"
                 className="w-20 h-20 rounded-full mx-auto mb-4"
               />
@@ -97,7 +97,7 @@ const BlogPage: React.FC = () => {
       <div key={blog._id} className="bg-white p-6 rounded-lg shadow">
         <div className="flex items-center mb-4">
           <img
-            src={blog.user.image || "/default-avatar.png"}
+            src={blog.user.image || "https://pomodo.s3.eu-north-1.amazonaws.com/defaultprofile.jpg"}
             alt={blog.user.username || "User"}
             className="w-10 h-10 rounded-full mr-4"
           />
