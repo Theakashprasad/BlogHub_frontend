@@ -83,7 +83,7 @@ export default function EditProfileModal({ open, onClose }: IProfile) {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="flex flex-col items-center space-y-2">
             <img
-              src={imagePreview || oldImage || '/uploads/defaultprofile.jpg'} 
+              src={imagePreview || oldImage || 'https://pomodo.s3.eu-north-1.amazonaws.com/defaultprofile.jpg'} 
               alt="Profile"
               className="w-24 h-24 rounded-full object-cover"
             />

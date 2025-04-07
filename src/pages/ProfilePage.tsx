@@ -86,7 +86,7 @@ const {user} = useUserStore()
     <div
       className="flex bg-gray-100 h-screen p-6 font-sans"
       style={{
-        backgroundImage: "url('/uploads/blogback.png')",
+        backgroundImage: "url('https://pomodo.s3.eu-north-1.amazonaws.com/blogback.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -96,7 +96,7 @@ const {user} = useUserStore()
         <div className="w-1/3 sticky top-6">
           <div className="bg-white shadow-lg rounded-lg p-6 text-center">
             <img
-              src={user?.image || "/uploads/defaultprofile.jpg"}
+              src={user?.image || "https://pomodo.s3.eu-north-1.amazonaws.com/defaultprofile.jpg"}
               alt={user?.username}
               className="w-32 h-32 rounded-full mx-auto mb-4"
             />
