@@ -17,15 +17,12 @@ const validatePassword = (password: string) => {
   return "";
 };
 
-export const validateLoginForm = (
-  email: string,
-  password: string
-) => {
+export const validateLoginForm = (email: string, password: string) => {
   const isAnyFieldEmpty = !email || !password;
 
   if (isAnyFieldEmpty) {
     return {
-      errors: { email: "", password: "" }, 
+      errors: { email: "", password: "" },
       isValid: false,
       isAnyFieldEmpty,
     };
@@ -39,5 +36,3 @@ export const validateLoginForm = (
   const isValid = !errors.email && !errors.password;
   return { errors, isValid, isAnyFieldEmpty };
 };
-
-

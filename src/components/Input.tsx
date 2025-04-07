@@ -1,8 +1,16 @@
-import { forwardRef } from 'react';
-import InputProps from '../interface/Input';
+import { forwardRef } from "react";
+import InputProps from "../interface/Input";
 
 const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const { id, type = 'text', value, onChange, placeholder, disabled, className } = props;
+  const {
+    id,
+    type = "text",
+    value,
+    onChange,
+    placeholder,
+    disabled,
+    className,
+  } = props;
 
   return (
     <input
@@ -13,7 +21,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
       placeholder={placeholder}
       disabled={disabled}
       className={className}
-      ref={ref}  
+      ref={ref}
     />
   );
 });

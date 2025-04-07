@@ -20,7 +20,7 @@ const SignupPage = () => {
     confirmPassword: "",
   });
   const [generalError, setGeneralError] = useState<string>("");
-  const [showPassword, setShowPassword] = useState(false);  
+  const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const navigate = useNavigate();

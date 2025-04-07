@@ -1,5 +1,5 @@
-import { JSX } from 'react';
-import { Navigate } from 'react-router-dom';
+import { JSX } from "react";
+import { Navigate } from "react-router-dom";
 
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   const token = localStorage.getItem("token");
@@ -8,18 +8,18 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   const isTokenExpired = (token: string | null): boolean => {
     if (!token) return true;
 
-    const payload = JSON.parse(atob(token.split('.')[1])); 
-    const expirationTime = payload.exp * 1000; 
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    const expirationTime = payload.exp * 1000;
     return Date.now() >= expirationTime;
   };
 
   // Check if the token is expired
   if (!token || isTokenExpired(token)) {
-    localStorage.removeItem("token"); 
+    localStorage.removeItem("token");
     return <Navigate to="/login" />;
   }
 
-  return children; 
+  return children;
 };
 
 export default ProtectedRoute;

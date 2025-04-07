@@ -1,5 +1,5 @@
 // components/NotFound.tsx
-import  { useEffect } from "react";
+import { useEffect } from "react";
 import lottie from "lottie-web";
 
 const NotFound = () => {
@@ -17,7 +17,7 @@ const NotFound = () => {
 
       let currentRight = right;
 
-      const move = setInterval(() => { 
+      const move = setInterval(() => {
         if (currentRight >= window.innerWidth) {
           star.remove();
           clearInterval(move);
@@ -62,7 +62,9 @@ const NotFound = () => {
 
       <div className="w-6/12 mx-auto animate-pulse" id="lottie"></div>
       <h1 className="text-4xl font-bold">404 - Page Not Found</h1>
-      <p className="text-2xl">Oops! The page you're looking for doesn't exist.</p>
+      <p className="text-2xl">
+        Oops! The page you're looking for doesn't exist.
+      </p>
       <a
         href="/"
         className="text-white font-bold hover:text-blue-500 mt-4 inline-block"

@@ -4,11 +4,11 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 export const getUser = async () => {
   try {
-    const token = localStorage.getItem('token');
-    const response = await axios.get(`${BACKEND_URL}/user`,{
-      headers:{
-        Authorization: `Bearer ${token}`
-      }
+    const token = localStorage.getItem("token");
+    const response = await axios.get(`${BACKEND_URL}/api/users/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
 
     return response.data;
@@ -17,20 +17,24 @@ export const getUser = async () => {
   }
 };
 
-export const updateUser = async (username:string, email:string,  image?: File | null) => {
+export const updateUser = async (
+  username: string,
+  email: string,
+  image?: File | null
+) => {
   try {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     const formData = new FormData();
-    formData.append('username', username || '');
-    formData.append('email', email || '');
+    formData.append("username", username || "");
+    formData.append("email", email || "");
     if (image) {
-      formData.append('file', image);
+      formData.append("file", image);
     }
 
-    const response = await axios.patch(`${BACKEND_URL}/user`, formData, {
+    const response = await axios.patch(`${BACKEND_URL}/api/users`, formData, {
       headers: {
-        'Content-Type': 'multipart/form-data',
-        Authorization:`Bearer ${token}`
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
       },
     });
     return response.data;

@@ -1,16 +1,18 @@
-import React from 'react'
-import { TextareaProps } from '../interface/TextArea'
+import React from "react";
+import { TextareaProps } from "../interface/TextArea";
 
-const TextArea:React.FC<TextareaProps> = ({value, 
-  onChange, 
-  placeholder, 
-  rows = 3, 
-  cols = 50, 
-  disabled = false, 
-  className = '', 
-  id, 
-  name, 
-  required = false}) => {
+const TextArea: React.FC<TextareaProps> = ({
+  value,
+  onChange,
+  placeholder,
+  rows = 3,
+  cols = 50,
+  disabled = false,
+  className = "",
+  id,
+  name,
+  required = false,
+}) => {
   return (
     <textarea
       value={value}
@@ -24,7 +26,7 @@ const TextArea:React.FC<TextareaProps> = ({value,
       name={name}
       required={required}
     />
-  )
-}
+  );
+};
 
-export default TextArea
+export default TextArea;

@@ -11,6 +11,7 @@ import EditProfileModal from "../components/Profile";
 import { Toaster, toast } from "sonner";
 import useUserStore from "../store/userStore";
 import { useNavigate } from "react-router-dom";
+import Loading from "../components/Loading";
 
 const ProfilePage: React.FC = () => {
   const { user } = useUserStore();
@@ -18,16 +19,23 @@ const ProfilePage: React.FC = () => {
   const [showOptions, setShowOptions] = useState<string | null>(null);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchCurrentUser = async () => {
-      const data = await getUser();
-      console.log(data);
-      const sortedBlogs = data.userBlogs.sort(
-        (a: Blog, b: Blog) =>
-          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-      );
-      setBlogs(sortedBlogs || []);
+      try {
+        const data = await getUser();
+        console.log(data);
+        const sortedBlogs = data.userBlogs.sort(
+          (a: Blog, b: Blog) =>
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
+        setBlogs(sortedBlogs || []);
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      } finally {
+        setLoading(false); // set loading false
+      }
     };
     fetchCurrentUser();
   }, []);
@@ -142,7 +150,11 @@ const ProfilePage: React.FC = () => {
 
           <div className="flex-1 overflow-y-auto hide-scrollbar">
             <div className="space-y-6 pr-2">
-              {blogs.length > 0 ? (
+              {loading ? (
+                <div className="flex justify-center items-center h-96">
+                  <Loading />
+                </div>
+              ) : blogs.length > 0 ? (
                 blogs.map((blog) => (
                   <div
                     key={blog._id}

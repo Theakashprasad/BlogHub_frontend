@@ -51,6 +51,17 @@ const BlogModal: React.FC<BlogModalProps> = ({ onBlogUpdate }) => {
   }
 
   const { showModal, closeModal, activeBlog } = context;
+  useEffect(() => {
+    if (!showModal) {
+      setTitle("");
+      setContent("");
+      setImage(null);
+      setImagePreview(null);
+      setOldImage(null);
+      setErrors({ title: "", content: "", image: "" });
+      setGeneralError("");
+    }
+  }, [showModal]);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -68,8 +79,7 @@ const BlogModal: React.FC<BlogModalProps> = ({ onBlogUpdate }) => {
     const { errors, isValid, isAnyFieldEmpty } = validateBlog(
       title,
       content,
-      image,
-      Boolean(activeBlog)
+      image
     );
     setErrors(errors);
     if (isAnyFieldEmpty) {

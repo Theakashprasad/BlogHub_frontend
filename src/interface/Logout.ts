@@ -1,4 +1,4 @@
-export default interface ILogout{
+export default interface ILogout {
   open: boolean;
   onClose: () => void;
 }

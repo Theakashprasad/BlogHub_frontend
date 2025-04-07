@@ -7,11 +7,13 @@ import Button from "../components/Button";
 import { getBlogs } from "../api/blogApi";
 import Logout from "../components/Logout";
 import { useNavigate } from "react-router-dom";
+import Loading from "../components/Loading";
 
 const BlogPage: React.FC = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,6 +31,8 @@ const BlogPage: React.FC = () => {
           setCurrentUser(data.user);
         } catch (error) {
           console.error("Error fetching blogs:", error);
+        } finally {
+          setLoading(false);
         }
       };
       fetchAllBlogs();
@@ -41,6 +45,13 @@ const BlogPage: React.FC = () => {
   const context = useContext(ModalContext);
   if (!context) {
     return null;
+  }
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen bg-gray-100">
+        <Loading />
+      </div>
+    );
   }
 
   return (

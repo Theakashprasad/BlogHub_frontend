@@ -6,6 +6,7 @@ import IProfile from "../interface/profile";
 import { getUser, updateUser } from "../api/userApi";
 import { toast, Toaster } from "sonner";
 import useUserStore from "../store/userStore";
+import { profileValidation } from "../utils/profileValidation";
 
 export default function EditProfileModal({ open, onClose }: IProfile) {
   const { setUser, updateUserProfile } = useUserStore();
@@ -15,6 +16,12 @@ export default function EditProfileModal({ open, onClose }: IProfile) {
   const [image, setImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [oldImage, setOldImage] = useState<string | null>(null);
+  const [errors, setErrors] = useState({
+    username: "",
+    email: "",
+    image: "",
+  });
+  const [generalError, setGeneralError] = useState<string>("");
 
   useEffect(() => {
     const fetchCurrentUser = async () => {
@@ -42,33 +49,49 @@ export default function EditProfileModal({ open, onClose }: IProfile) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const data = await updateUser(username, email, image);
-    updateUserProfile({
+    console.log(image);
+    const { errors, isValid, isAnyFieldEmpty } = profileValidation(
       username,
       email,
-      image: data.updatedUser.image || null,
-    });
-    setUser({
-      id: data.updatedUser._id,
-      username: data.updatedUser.username,
-      email: data.updatedUser.email,
-      image: data.updatedUser.image || null,
-    });
-    const promise = () =>
-      new Promise((resolve) =>
-        setTimeout(() => resolve({ name: "Profile" }), 2000)
-      );
+      image
+    );
+    console.log(isValid);
+    setErrors(errors);
+    if (isAnyFieldEmpty) {
+      setGeneralError("All fields must be filled out.");
+      return;
+    } else {
+      setGeneralError("");
+    }
+    if (isValid) {
+      const data = await updateUser(username, email, image);
+      updateUserProfile({
+        username,
+        email,
+        image: data.updatedUser.image || null,
+      });
+      setUser({
+        id: data.updatedUser._id,
+        username: data.updatedUser.username,
+        email: data.updatedUser.email,
+        image: data.updatedUser.image || null,
+      });
+      const promise = () =>
+        new Promise((resolve) =>
+          setTimeout(() => resolve({ name: "Profile" }), 2000)
+        );
 
-    toast.promise(promise, {
-      loading: "Loading...",
-      success: (data) => {
-        const result = data as { name: string };
-        return `${result.name} has been updated`;
-      },
-      error: "Error",
-    });
-    console.log(data);
-    onClose();
+      toast.promise(promise, {
+        loading: "Loading...",
+        success: (data) => {
+          const result = data as { name: string };
+          return `${result.name} has been updated`;
+        },
+        error: "Error",
+      });
+      console.log(data);
+      onClose();
+    }
   };
 
   if (!open) return null;
@@ -106,7 +129,13 @@ export default function EditProfileModal({ open, onClose }: IProfile) {
                 onChange={handleImageUpload}
               />
             </Label>
+            {errors.image && (
+              <p className="text-red-500 text-sm mt-1">{errors.image}</p>
+            )}
           </div>
+          {generalError && (
+            <p className="text-red-500 mb-4 text-center">{generalError}</p>
+          )}
           <div>
             <Label htmlFor="username" className="block mb-1">
               Username
@@ -118,6 +147,9 @@ export default function EditProfileModal({ open, onClose }: IProfile) {
               onChange={(e) => setUsername(e.target.value)}
               className="w-full px-3 py-2 border rounded"
             />
+            {errors.username && (
+              <p className="text-red-500 text-sm mt-1">{errors.username}</p>
+            )}
           </div>
           <div>
             <Label htmlFor="email" className="block mb-1">
@@ -131,6 +163,9 @@ export default function EditProfileModal({ open, onClose }: IProfile) {
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-3 py-2 border rounded"
             />
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+            )}
           </div>
           <div className="flex justify-end space-x-2">
             <Button
