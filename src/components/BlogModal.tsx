@@ -8,7 +8,7 @@ import Input from "./Input";
 import { Upload } from "lucide-react";
 import { postBlog, updateBlog } from "../api/blogApi";
 import { validateBlog } from "../utils/blogValidation";
-import {toast, Toaster} from 'sonner'
+import { toast, Toaster } from "sonner";
 import Blog from "../interface/Blog";
 
 interface BlogModalProps {
@@ -16,7 +16,6 @@ interface BlogModalProps {
 }
 
 const BlogModal: React.FC<BlogModalProps> = ({ onBlogUpdate }) => {
-  
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const [image, setImage] = useState<File | null>(null);
@@ -32,7 +31,6 @@ const BlogModal: React.FC<BlogModalProps> = ({ onBlogUpdate }) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const context = useContext(ModalContext);
-  
 
   useEffect(() => {
     if (context && context.activeBlog) {
@@ -151,14 +149,12 @@ const BlogModal: React.FC<BlogModalProps> = ({ onBlogUpdate }) => {
               <h3 className="text-3xl font-semibold">
                 {activeBlog ? "Edit blog" : "Create a new blog"}
               </h3>
-              <Button
-                className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+              <button
                 onClick={closeModal}
+                className="text-gray-500 hover:text-red-600 transition-colors duration-300 text-2xl font-bold"
               >
-                <span className="text-black h-6 w-6 text-2xl block outline-none focus:outline-none">
-                  ×
-                </span>
-              </Button>
+                &times;
+              </button>
             </div>
             {generalError && (
               <p className="text-red-500 mb-4 text-center">{generalError}</p>
@@ -239,7 +235,7 @@ const BlogModal: React.FC<BlogModalProps> = ({ onBlogUpdate }) => {
         </div>
       </div>
       <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
-      <Toaster position="top-right"/>
+      <Toaster position="top-right" />
     </>
   );
 };

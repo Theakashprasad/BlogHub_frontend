@@ -34,13 +34,14 @@ const validatePassword = (password: string) => {
 export const validateSignupForm = (
   username: string,
   email: string,
-  password: string
+  password: string,
+  confirmPassword: string
 ) => {
-  const isAnyFieldEmpty = !username || !email || !password;
+  const isAnyFieldEmpty = !username || !email || !password || !confirmPassword;
 
   if (isAnyFieldEmpty) {
     return {
-      errors: { username: "", email: "", password: "" },
+      errors: { username: "", email: "", password: "", confirmPassword: "" },
       isValid: false,
       isAnyFieldEmpty,
     };
@@ -50,8 +51,17 @@ export const validateSignupForm = (
     username: validateUsername(username),
     email: validateEmail(email) ? "" : "Invalid email format",
     password: validatePassword(password),
+    confirmPassword: "",
   };
 
-  const isValid = !errors.username && !errors.email && !errors.password;
+  if (password && confirmPassword && password !== confirmPassword) {
+    errors.confirmPassword = "Passwords do not match";
+  }
+
+  const isValid =
+    !errors.username &&
+    !errors.email &&
+    !errors.password &&
+    !errors.confirmPassword;
   return { errors, isValid, isAnyFieldEmpty };
 };
