@@ -1,5 +1,5 @@
 // components/NotFound.tsx
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import lottie from "lottie-web";
 
 const NotFound = () => {
