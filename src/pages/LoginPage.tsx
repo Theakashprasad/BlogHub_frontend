@@ -5,10 +5,10 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import { validateLoginForm } from "../utils/loginValidation";
 import { Toaster, toast } from "sonner";
-// import useUserStore from "../store/userStore";
+import useUserStore from "../store/userStore";
 
 const LoginPage = () => {
-  // const { setUser } = useUserStore();
+  const { setUser } = useUserStore();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [errors, setErrors] = useState({
@@ -55,12 +55,12 @@ const LoginPage = () => {
         if (result.data.accessToken) {
           localStorage.setItem("token", result.data.accessToken);
 
-          // setUser({
-          //   id: result.data.existingUser._id,
-          //   username: result.data.existingUser.username,
-          //   email: result.data.existingUser.email,
-          //   image: result.data.existingUser.image || null,
-          // });
+          setUser({
+            id: result.data.existingUser._id,
+            username: result.data.existingUser.username,
+            email: result.data.existingUser.email,
+            image: result.data.existingUser.image || null,
+          });
 
           toast.success("Login successful");
           setTimeout(() => {
