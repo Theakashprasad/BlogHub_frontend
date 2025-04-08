@@ -138,6 +138,9 @@ const BlogPage: React.FC = () => {
                       />
                     </div>
                   )}
+                  <span className="text-sm text-gray-500">
+                      {new Date(blog.createdAt).toLocaleDateString()}
+                    </span>
                 </div>
               ))}
             </div>

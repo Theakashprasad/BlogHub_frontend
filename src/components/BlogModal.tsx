@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { ModalContext } from "../context/ModalContext";
 import Button from "./Button";

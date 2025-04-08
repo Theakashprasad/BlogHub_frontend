@@ -30,7 +30,8 @@ export const validateBlog = (
   content: string,
   image: File | null
 ) => {
-  const isAnyFieldEmpty = !title || !content || !image;
+  console.log(title, content, image)
+  const isAnyFieldEmpty = !title || !content;
 
   if (isAnyFieldEmpty) {
     return {

@@ -39,7 +39,6 @@ const LoginPage = () => {
     if (isValid) {
       try {
         const result = await postLogin(email, password);
-        console.log(result.data.blogs, "all blogs");
         if ("error" in result) {
           switch (result.status) {
             case 404:
