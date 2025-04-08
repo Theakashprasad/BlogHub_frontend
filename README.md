@@ -1,18 +1,57 @@
-﻿# WritersGrid - Backend
+﻿# BlogHub - Backend
+[![Screenshot](https://pomodo.s3.eu-north-1.amazonaws.com/Screenshot+2025-04-08+122357.png)]([https://your-link.com](https://blog-hub-frontend-phi.vercel.app/))
 
-This is the backend of a simple personal blogging platform built with Node.js and Express.js.
+The BlogHub backend is built with Node.js, Express.js, and MongoDB. It handles user authentication using JWT, and provides secure RESTful APIs for blog creation, retrieval, updating, and deletion, ensuring only authors can modify their own posts.
 
+ https://youtu.be/eZ2xl4y49Dg
+## Project Structure
+```
+project-root/
+└── backend/
+    └── bloghub/
+        └── src/
+            ├── config/
+            │   └── DB
+            │
+            ├── controllers/
+            │   ├── authController.ts
+            │   ├── blogController.ts
+            │   └── userController.ts
+            │
+            ├── interfaces/
+            │   ├── blogInterface.ts
+            │   ├── multerInterface.ts
+            │   └── userInterface.ts
+            │
+            ├── middleware/
+            │   ├── authenticationMiddleware.ts
+            │   └── uploadMiddleware.ts
+            │
+            ├── models/
+            │   ├── blog.ts
+            │   └── user.ts
+            │
+            ├── routes/
+            │   ├── authRouter.ts
+            │   ├── blogRouter.ts
+            │   └── userRouter.ts
+            │
+            ├── utils/
+            │   ├── jwt.ts
+            │   └── password.ts
+            │
+            └── server.ts
+```
 ## Features
 
 - User registration and authentication
   - Login
   - Registration
-  - Reset Password
-  - Email verification
-- CRUD operations for blog posts
+  - Blog Management 
+- CRUD operations for blog 
   - Listing blog posts
   - Inline delete & edit options
-  - Popup action for creating new posts
+  - PopUp action for creating new posts
 
 ## Technologies Used
 
@@ -20,7 +59,6 @@ This is the backend of a simple personal blogging platform built with Node.js an
 - Express.js
 - MongoDB
 - JWT for authentication
-- Nodemailer for email verification
 
 ## Getting Started
 
@@ -33,27 +71,33 @@ This is the backend of a simple personal blogging platform built with Node.js an
 
 1. Clone the repository
    ```sh
-   git clone https://github.com/DevikaRajesh22/WritersGrid-server.git
+   https://github.com/Theakashprasad/BlogHub_backend.git
    ```
 2. Install NPM packages
    ```sh
    npm install
    ```
-3. Create a `.env` file in the root directory and add the following environment variables
+2. Install typeScript
    ```sh
-   MONGO_URI=mongodb+srv://devikaraj699:N1E0C3DBe5VZ87w2@cluster0.xjjgwon.mongodb.net/
-   JWT_KEY=DevikaRajesh22
-   EMAIL = <your-email-address>
-   PASS = <Your-email-passkey>
-   CLOUD_NAME=dukphpctd
-   CLOUD_API_KEY=157246774811929
-   CLOUD_API_SECRET=QPmVkoXCY0K-BbhDuhoLZYBKSAQ
+   npx tsc
    ```
+4.  **Environment Variables**:
+
+        Ensure that the environment variables are correctly set in a `.env` file, in the location .env.example is located. Here is an example of the required environment variables:
+
+        ```
+        MONGODB_URI=mongodb+srv://akashyoungstar123:810vLuWqUnMXwn7R@blog.8zlcm41.mongodb.net/?retryWrites=true&w=majority&appName=blog
+        PORT=3000
+        S3_REGION=eu-north-1
+        S3_BUCKET_NAME=procowebsite
+        S3_ACCESS_KEY = AKIAYS2NUTVDVGO4HEBQ
+        S3_SECRET_KEY = 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
+        JWT_ACCESS_TOKEN_SECRET_KEY = haiThere
+        CLIENT_ORIGINS= http://localhost:5173
+
+    ```
 4. Start the server
    ```sh
    npm start
    ```
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
