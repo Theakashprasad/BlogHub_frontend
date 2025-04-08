@@ -1,7 +1,7 @@
-﻿# BlogHub - Backend
+﻿# BlogHub - Frontend
 [![Screenshot](https://pomodo.s3.eu-north-1.amazonaws.com/Screenshot+2025-04-08+122357.png)]([https://your-link.com](https://blog-hub-frontend-phi.vercel.app/))
 
-The BlogHub backend is built with Node.js, Express.js, and MongoDB. It handles user authentication using JWT, and provides secure RESTful APIs for blog creation, retrieval, updating, and deletion, ensuring only authors can modify their own posts.
+The BlogHub frontend is developed using React.js with functional components and hooks. It provides a clean UI for user registration, login, and blog management. Authenticated users can create, view, edit, and delete their own posts seamlessly with real-time state updates.
 
  https://youtu.be/eZ2xl4y49Dg
 ## Project Structure
@@ -75,20 +75,17 @@ project-root/
 
 ## Technologies Used
 
-- Node.js
-- Express.js
-- MongoDB
-- JWT for authentication
+- context, Zustand
+- Axios for API requests
+- React Router for navigation
+- Tailwind CSS for styling
 
 ## Getting Started
 
 ### Prerequisites
 
 - React.js
-- context, Zustand
-- Axios for API requests
-- React Router for navigation
-- Tailwind CSS for styling
+
 
 ### Installation
 
