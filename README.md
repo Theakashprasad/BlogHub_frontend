@@ -1,54 +1,59 @@
-# React + TypeScript + Vite
+﻿# WritersGrid - Backend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the backend of a simple personal blogging platform built with Node.js and Express.js.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- User registration and authentication
+  - Login
+  - Registration
+  - Reset Password
+  - Email verification
+- CRUD operations for blog posts
+  - Listing blog posts
+  - Inline delete & edit options
+  - Popup action for creating new posts
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Node.js
+- Express.js
+- MongoDB
+- JWT for authentication
+- Nodemailer for email verification
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Getting Started
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Prerequisites
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Node.js
+- MongoDB
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+### Installation
+
+1. Clone the repository
+   ```sh
+   git clone https://github.com/DevikaRajesh22/WritersGrid-server.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Create a `.env` file in the root directory and add the following environment variables
+   ```sh
+   MONGO_URI=mongodb+srv://devikaraj699:N1E0C3DBe5VZ87w2@cluster0.xjjgwon.mongodb.net/
+   JWT_KEY=DevikaRajesh22
+   EMAIL = <your-email-address>
+   PASS = <Your-email-passkey>
+   CLOUD_NAME=dukphpctd
+   CLOUD_API_KEY=157246774811929
+   CLOUD_API_SECRET=QPmVkoXCY0K-BbhDuhoLZYBKSAQ
+   ```
+4. Start the server
+   ```sh
+   npm start
+   ```
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
