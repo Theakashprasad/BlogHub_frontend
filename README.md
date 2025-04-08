@@ -7,40 +7,59 @@ The BlogHub backend is built with Node.js, Express.js, and MongoDB. It handles u
 ## Project Structure
 ```
 project-root/
-└── backend/
-    └── bloghub/
+└── frontend/
+    └── bloghub-frontend/
         └── src/
-            ├── config/
-            │   └── DB
+            ├── api/
+            │   └── axiosConfig.ts
+            │   └── authAPI.ts
+            │   └── blogAPI.ts
             │
-            ├── controllers/
-            │   ├── authController.ts
-            │   ├── blogController.ts
-            │   └── userController.ts
+            ├── components/
+            │   ├── Navbar.tsx
+            │   ├── BlogCard.tsx
+            │   ├── ProtectedRoute.tsx
+            │   └── ... (reusable components)
+            │
+            ├── context/
+            │   └── AuthContext.tsx
+            │
+            ├── HOC/
+            │   └── withAuth.tsx
             │
             ├── interfaces/
-            │   ├── blogInterface.ts
-            │   ├── multerInterface.ts
-            │   └── userInterface.ts
+            │   ├── user.interface.ts
+            │   ├── blog.interface.ts
+            │   └── auth.interface.ts
             │
-            ├── middleware/
-            │   ├── authenticationMiddleware.ts
-            │   └── uploadMiddleware.ts
+            ├── pages/
+            │   ├── Home.tsx
+            │   ├── Login.tsx
+            │   ├── Register.tsx
+            │   ├── CreateBlog.tsx
+            │   ├── EditBlog.tsx
+            │   ├── BlogDetails.tsx
+            │   └── Profile.tsx
             │
-            ├── models/
-            │   ├── blog.ts
-            │   └── user.ts
+            ├── redux/
+            │   ├── slices/
+            │   │   ├── authSlice.ts
+            │   │   └── blogSlice.ts
+            │   └── rootReducer.ts
             │
             ├── routes/
-            │   ├── authRouter.ts
-            │   ├── blogRouter.ts
-            │   └── userRouter.ts
+            │   └── AppRoutes.tsx
+            │
+            ├── store/
+            │   └── store.ts
             │
             ├── utils/
-            │   ├── jwt.ts
-            │   └── password.ts
+            │   ├── tokenHandler.ts
+            │   ├── formatDate.ts
+            │   └── toastConfig.ts
             │
-            └── server.ts
+            └── main.tsx / index.tsx
+
 ```
 ## Features
 
@@ -52,6 +71,7 @@ project-root/
   - Listing blog posts
   - Inline delete & edit options
   - PopUp action for creating new posts
+- Responsive UI
 
 ## Technologies Used
 
@@ -64,36 +84,29 @@ project-root/
 
 ### Prerequisites
 
-- Node.js
-- MongoDB
+- React.js
+- context, Zustand
+- Axios for API requests
+- React Router for navigation
+- Tailwind CSS for styling
 
 ### Installation
 
 1. Clone the repository
    ```sh
-   https://github.com/Theakashprasad/BlogHub_backend.git
+   https://github.com/Theakashprasad/BlogHub_frontend.git
    ```
 2. Install NPM packages
    ```sh
    npm install
    ```
-2. Install typeScript
-   ```sh
-   npx tsc
-   ```
-4.  **Environment Variables**:
+3.  **Environment Variables**:
 
         Ensure that the environment variables are correctly set in a `.env` file, in the location .env.example is located. Here is an example of the required environment variables:
 
         ```
-        MONGODB_URI=mongodb+srv://akashyoungstar123:810vLuWqUnMXwn7R@blog.8zlcm41.mongodb.net/?retryWrites=true&w=majority&appName=blog
-        PORT=3000
-        S3_REGION=eu-north-1
-        S3_BUCKET_NAME=procowebsite
-        S3_ACCESS_KEY = AKIAYS2NUTVDVGO4HEBQ
-        S3_SECRET_KEY = 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
-        JWT_ACCESS_TOKEN_SECRET_KEY = haiThere
-        CLIENT_ORIGINS= http://localhost:5173
+        VITE_BACKEND_URL = http://localhost:3000
+        
 
     ```
 4. Start the server
